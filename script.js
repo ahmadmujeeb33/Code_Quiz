@@ -20,9 +20,13 @@ function Questions(){
         secondElement.setAttribute("id", "secondElementInfo");
         thirdElement.setAttribute("id", "thirdElementInfo");
 
-        firstElement.innerText = options[index];
-        secondElement.innerText = options[index+1];
-        thirdElement.innerText = options[index+2];
+        let value1 = options[index];
+        let value2 = options[index+1];
+        let value3 = options[index+2];
+
+        firstElement.innerText = value1.slice(0,value1.length-1);
+        secondElement.innerText = value2.slice(0,value2.length-1);
+        thirdElement.innerText = value3.slice(0,value3.length-1);
         question.setAttribute('style','font-weight:bold');
         middle.append(question);
         middle.append(firstElement);
@@ -30,15 +34,31 @@ function Questions(){
         middle.append(thirdElement);
 
         document.querySelector('#firstElementInfo').addEventListener('click',function(){
-            document.getElementById("firstElementInfo").classList.add('winner');
+            if(value1[value1.length-1] === 'W'){
+                document.getElementById("firstElementInfo").classList.add('winner');
+            }
+            else{
+                document.getElementById("firstElementInfo").classList.add('loser');
+            }
+            
             setTimeout(Remove, 1000);
         });
         document.querySelector('#secondElementInfo').addEventListener('click',function(){
-            document.getElementById("secondElementInfo").className = "loser";
+            if(value2[value2.length-1] === 'W'){
+                document.getElementById("secondElementInfo").classList.add('winner');
+            }
+            else{
+                document.getElementById("secondElementInfo").classList.add('loser');
+            }
             setTimeout(Remove, 1000);
         })
         document.querySelector('#thirdElementInfo').addEventListener('click',function(){
-            document.getElementById("thirdElementInfo").className = "loser";
+            if(value3[value3.length-1] === 'W'){
+                document.getElementById("thirdElementInfo").classList.add('winner');
+            }
+            else{
+                document.getElementById("thirdElementInfo").classList.add('loser');
+            }
             setTimeout(Remove, 1000);
         });
 
