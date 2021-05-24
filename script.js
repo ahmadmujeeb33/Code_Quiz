@@ -6,15 +6,6 @@ let options = ["1. store information to be refrenced ", "2. a term only used in 
 
 
 
-function Winner(){
-    
-}
-
-function Loser(){
-
-}
-
-
 
 function Questions(){
     let firstElement = document.createElement("p");
@@ -22,6 +13,9 @@ function Questions(){
     let thirdElement = document.createElement("p");
     let question = document.createElement("p");
     question.innerText = totalQuestions[0];
+    firstElement.setAttribute("id", "firstElementInfo");
+    secondElement.setAttribute("id", "secondElementInfo");
+    thirdElement.setAttribute("id", "thirdElementInfo");
     firstElement.innerText = options[0];
     secondElement.innerText = options[1];
     thirdElement.innerText = options[2];
@@ -30,6 +24,15 @@ function Questions(){
     middle.append(firstElement);
     middle.append(secondElement);
     middle.append(thirdElement);
+    document.querySelector('#firstElementInfo').addEventListener('click',function(){
+        document.getElementById("firstElementInfo").className = "winner";
+    });
+    document.querySelector('#secondElementInfo').addEventListener('click',function(){
+        document.getElementById("secondElementInfo").className = "loser";
+    });
+    document.querySelector('#thirdElementInfo').addEventListener('click',function(){
+        document.getElementById("thirdElementInfo").className = "loser";
+    });
     
 }
 
