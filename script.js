@@ -26,6 +26,7 @@ function Questions(){
     middle.append(thirdElement);
     document.querySelector('#firstElementInfo').addEventListener('click',function(){
         document.getElementById("firstElementInfo").className = "winner";
+        Remove();
     });
     document.querySelector('#secondElementInfo').addEventListener('click',function(){
         document.getElementById("secondElementInfo").className = "loser";
@@ -45,6 +46,12 @@ function RemoveMain(){
     }
     Questions();
     
+}
+
+function Remove(){
+    while(middle.hasChildNodes()){
+        middle.removeChild(middle.childNodes[0]);
+    }
 }
 
 startButton.addEventListener('click',RemoveMain);
