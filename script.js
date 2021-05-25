@@ -12,6 +12,8 @@ let numQuestion = 0;
 
 let secondsleft = 70;
 
+let finalScore = 0;
+
 
 
 function Questions(){
@@ -48,6 +50,7 @@ function Questions(){
     document.querySelector('#firstElementInfo').addEventListener('click',function(){
         if(value1[value1.length-1] === 'W'){
             document.getElementById("firstElementInfo").classList.add('winner');
+            finalScore+=10;
         }
         else{
             document.getElementById("firstElementInfo").classList.add('loser');
@@ -59,6 +62,7 @@ function Questions(){
     document.querySelector('#secondElementInfo').addEventListener('click',function(){
         if(value2[value2.length-1] === 'W'){
             document.getElementById("secondElementInfo").classList.add('winner');
+            finalScore+=10;
         }
         else{
             document.getElementById("secondElementInfo").classList.add('loser');
@@ -69,6 +73,7 @@ function Questions(){
     document.querySelector('#thirdElementInfo').addEventListener('click',function(){
         if(value3[value3.length-1] === 'W'){
             document.getElementById("thirdElementInfo").classList.add('winner');
+            finalScore+=10;
         }
         else{
             document.getElementById("thirdElementInfo").classList.add('loser');
@@ -84,7 +89,6 @@ function Questions(){
 
 
 function RemoveMain(){
-    setTime();
     console.log(middle.childNodes);
     while(middle.hasChildNodes()){
         middle.removeChild(middle.childNodes[0]);
@@ -101,10 +105,40 @@ function RemoveMain(){
 
 
 
-startButton.addEventListener('click',RemoveMain);
+startButton.addEventListener('click',function(){
+    RemoveMain();
+    setTime();
+});
 
 function final(){
-    alert("finished");
+
+    let element = document.createElement('h1');
+    let currentScore = document.createElement('h3');
+    let par = document.createElement('p');
+    let input = document.createElement('INPUT');
+    let box = document.createElement('DIV');
+    let button = document.createElement('BUTTON');
+
+    let submit = document.createTextNode("Submit");
+    button.appendChild(submit);
+
+    input.setAttribute('type', 'text');
+    input.setAttribute("style","padding-left:10px;");
+    element.innerText = "High Scores";
+    par.innerText = "Enter Initals";
+    box.setAttribute('class','flexbox');
+    box.append(par);
+    box.append(input);
+    
+    button.setAttribute("style", "margin-top: 10px");
+
+    currentScore.textContent = "Score: " + finalScore;
+
+    middle.append(currentScore);
+    middle.append(box);
+    middle.append(button);
+
+    
 }
 
 
