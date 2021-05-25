@@ -20,3 +20,7 @@
 .loser{
     background-color: red;
 }
+
+.flexbox{
+    display: flex;
+}
