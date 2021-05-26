@@ -164,11 +164,13 @@ function final(){
 
     currentScore.textContent = "Score: " + finalScore;
 
-    initals = input.innerHTML;
+    
 
     middle.append(currentScore);
     middle.append(box);
     middle.append(button);
+
+    initals = document.querySelector('INPUT').value;
 
     document.querySelector('BUTTON').addEventListener('click',HighScores);
 
