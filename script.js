@@ -3,6 +3,8 @@ let middle = document.getElementsByClassName('middle-bar')[0];
 let element = document.createElement('h1');
 let par = document.createElement('p');
 
+let h3element = document.createElement('h3');
+
 let intoFinal = false;
 
 listOfScores = [];
@@ -23,7 +25,7 @@ let finalScore = 0;
 
 let initals = "";
 
-
+//localStorage.clear();
 
 
 
@@ -123,6 +125,7 @@ startButton.addEventListener('click',function(){
 });
 
 function HighScores(){
+    initals = document.querySelector('INPUT').value;
     while(middle.hasChildNodes()){
         middle.removeChild(middle.childNodes[0]);
     }
@@ -130,13 +133,31 @@ function HighScores(){
     par.innerText = initals
     middle.append(element);
 
-    let word = initals.concat(finalScore.toString());
-    listOfScores.push(initals.concat(finalScore.toString()));
-    console.log("inits " + initals);
-    console.log(word);
-    localStorage.setItem('items', listOfScores);
+    
+    
 
-    console.log(listOfScores);
+    if(localStorage.getItem('items') == null){
+        listOfScores.push(initals.concat(finalScore.toString()));
+        localStorage.setItem('items', JSON.stringify(listOfScores));
+
+        
+    }
+
+    else{
+        listOfScores = JSON.parse(localStorage.getItem('items'));
+        listOfScores.push(initals.concat(finalScore.toString()));
+        localStorage.setItem('items',JSON.stringify(listOfScores));
+
+    }
+    console.log(listOfScores.length);
+    for(let i=0;i<listOfScores.length;i++){
+        h3element.innerText = listOfScores[i];
+        console.log(listOfScores[i])
+        middle.append(h3element);
+    }
+    
+    
+    
 
 }
 
@@ -170,7 +191,8 @@ function final(){
     middle.append(box);
     middle.append(button);
 
-    initals = document.querySelector('INPUT').value;
+    console.log("rhurilus");
+    console.log(document.querySelector('INPUT').value);
 
     document.querySelector('BUTTON').addEventListener('click',HighScores);
 
