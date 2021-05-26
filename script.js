@@ -1,5 +1,12 @@
 const startButton = document.getElementById('startClicked');
 let middle = document.getElementsByClassName('middle-bar')[0];
+let element = document.createElement('h1');
+let par = document.createElement('p');
+
+let intoFinal = false;
+
+listOfScores = [];
+
 
 const timer = document.getElementById('timer');
 
@@ -10,9 +17,14 @@ let i = -1;
 
 let numQuestion = 0;
 
-let secondsleft = 70;
+let secondsleft = 50;
 
 let finalScore = 0;
+
+let initals = "";
+
+
+
 
 
 
@@ -110,21 +122,39 @@ startButton.addEventListener('click',function(){
     setTime();
 });
 
-function final(){
+function HighScores(){
+    while(middle.hasChildNodes()){
+        middle.removeChild(middle.childNodes[0]);
+    }
+    element.innerText = "Scores";
+    par.innerText = initals
+    middle.append(element);
 
-    let element = document.createElement('h1');
+    let word = initals.concat(finalScore.toString());
+    listOfScores.push(initals.concat(finalScore.toString()));
+    console.log("inits " + initals);
+    console.log(word);
+    localStorage.setItem('items', listOfScores);
+
+    console.log(listOfScores);
+
+}
+
+function final(){
+    intoFinal = true;
+    
     let currentScore = document.createElement('h3');
-    let par = document.createElement('p');
     let input = document.createElement('INPUT');
     let box = document.createElement('DIV');
     let button = document.createElement('BUTTON');
+    
 
     let submit = document.createTextNode("Submit");
     button.appendChild(submit);
 
     input.setAttribute('type', 'text');
     input.setAttribute("style","padding-left:10px;");
-    element.innerText = "High Scores";
+    
     par.innerText = "Enter Initals";
     box.setAttribute('class','flexbox');
     box.append(par);
@@ -134,9 +164,13 @@ function final(){
 
     currentScore.textContent = "Score: " + finalScore;
 
+    initals = input.innerHTML;
+
     middle.append(currentScore);
     middle.append(box);
     middle.append(button);
+
+    document.querySelector('BUTTON').addEventListener('click',HighScores);
 
     
 }
@@ -148,9 +182,19 @@ function setTime() {
             timer.innerText = secondsleft;
             secondsleft-=1; 
 
-            if(secondsleft === 0) {
+            if(secondsleft === -1) {
+                if(!intoFinal){
+                    while(middle.hasChildNodes()){
+                        middle.removeChild(middle.childNodes[0]);
+                    }
+                    final();
+                }
                 clearInterval(timerInterval);
-                score();
+                
+            }
+
+            if(intoFinal){
+                clearInterval(timerInterval);
             }
 
            
