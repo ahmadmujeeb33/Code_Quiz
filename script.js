@@ -3,7 +3,7 @@ let middle = document.getElementsByClassName('middle-bar')[0];
 let element = document.createElement('h1');
 let par = document.createElement('p');
 
-let h3element = document.createElement('h3');
+
 
 let intoFinal = false;
 
@@ -125,7 +125,7 @@ startButton.addEventListener('click',function(){
 });
 
 function HighScores(){
-    initals = document.querySelector('INPUT').value;
+    initals = document.querySelector('INPUT').value + " ";
     while(middle.hasChildNodes()){
         middle.removeChild(middle.childNodes[0]);
     }
@@ -151,6 +151,7 @@ function HighScores(){
     }
     console.log(listOfScores.length);
     for(let i=0;i<listOfScores.length;i++){
+        let h3element = document.createElement('h3');
         h3element.innerText = listOfScores[i];
         console.log(listOfScores[i])
         middle.append(h3element);
