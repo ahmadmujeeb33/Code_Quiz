@@ -5,4 +5,4 @@ This is a quiz about questions on javascript. The user will have a set time and 
 
 https://ahmadmujeeb33.github.io/Code_Quiz/
 
-<img src = "CodeQuiz.png">
+<img src = "CodeQuiz.PNG">
